@@ -1,6 +1,8 @@
 FROM ubuntu:xenial
 
 EXPOSE 8080
+EXPOSE 8001
+EXPOSE 8002
 
 COPY package.json /app/
 COPY webpack.config.js /app/
@@ -16,7 +18,7 @@ RUN apt-get update && apt-get install -y nodejs npm
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 WORKDIR /app
-RUN npm set progress=false; npm install --unsafe-perm
+RUN npm set progress=false; npm install --unsafe-perm && npm cache clean
 RUN rm -rf src/
 
-ENTRYPOINT ["./node_modules/.bin/http-server", "."]
+ENTRYPOINT ["npm", "start"]

@@ -1,6 +1,5 @@
 var http = require('http');
 var httpProxy = require('http-proxy');
-require('dotenv').config();
 var express = require('express');
 
 httpProxy.createProxyServer(

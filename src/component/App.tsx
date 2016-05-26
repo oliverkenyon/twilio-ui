@@ -18,7 +18,7 @@ class App extends React.Component<AppProps, any> {
     constructor() {
         super();
 
-        let apiURL = "http://" + location.host + ":8001";
+        let apiURL = "http://" + location.hostname + ":8001";
 
         this.voiceCaller = new VoiceCaller(apiURL);
         this.voiceCaller.initialize();
@@ -26,7 +26,7 @@ class App extends React.Component<AppProps, any> {
 
     render() {
 
-        let webSocketURL = "http://" + location.host + ":8002";
+        let webSocketURL = "ws://" + location.hostname + ":8002";
         let webSocketConnection = new WebSocketConnection(webSocketURL);
         webSocketConnection.subscribe(new class {
             onData(message) {
