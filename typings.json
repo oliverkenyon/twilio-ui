@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "debug": "registry:npm/debug#2.0.0+20160511151334",
+    "react-redux": "registry:npm/react-redux#4.4.0+20160207114942"
+  },
+  "globalDependencies": {
+    "react": "registry:dt/react#0.14.0+20160423065914",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
+  }
+}

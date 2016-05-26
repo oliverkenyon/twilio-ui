@@ -1,0 +1,16 @@
+{
+   "compileOnSave": true,
+
+   "compilerOptions": {
+		 "sourceMap": true,
+		 "jsx" : "react"
+   },
+
+   "exclude": [
+        "node_modules"
+	],
+
+	"atom": {
+		"formatOnSave": true
+	}
+}
