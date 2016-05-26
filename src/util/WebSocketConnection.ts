@@ -13,7 +13,7 @@ export default class WebSocketConnection {
     private subscribers: Array<any>;
 
     constructor(serverURL: string) {
-        this.serverURL = "ws:/" + serverURL + ":4567/websocket";
+        this.serverURL = serverURL;
 
         this.websocket = null;
         this.subscribers = new Array<any>();

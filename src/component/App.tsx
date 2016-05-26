@@ -6,7 +6,6 @@ import SmsPanel from './SmsPanel';
 import SmsContainer from "./../util/SmsContainer";
 import VoiceCaller from "./../util/VoiceCaller";
 import WebSocketConnection from "./../util/WebSocketConnection";
-import Config from "./../util/Config";
 
 class AppProps {
 
@@ -14,14 +13,12 @@ class AppProps {
 
 class App extends React.Component<AppProps, any> {
 
-    private config: Config;
     private voiceCaller: VoiceCaller;
 
     constructor() {
         super();
 
-        this.config = new Config();
-        let apiURL = this.config.getApiUrl();
+        let apiURL = "http://" + location.host + ":8001";
 
         this.voiceCaller = new VoiceCaller(apiURL);
         this.voiceCaller.initialize();
@@ -29,7 +26,7 @@ class App extends React.Component<AppProps, any> {
 
     render() {
 
-        let webSocketURL = this.config.getWebSocketUrl();
+        let webSocketURL = "http://" + location.host + ":8002";
         let webSocketConnection = new WebSocketConnection(webSocketURL);
         webSocketConnection.subscribe(new class {
             onData(message) {
@@ -39,8 +36,6 @@ class App extends React.Component<AppProps, any> {
         });
 
         webSocketConnection.open();
-
-        let apiURL = this.config.getApiUrl();
 
         return <div>
             <SmsContainer />

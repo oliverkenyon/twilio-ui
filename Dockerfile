@@ -4,11 +4,10 @@ EXPOSE 8080
 
 COPY package.json /app/
 COPY webpack.config.js /app/
-COPY build_config.js /app/
-COPY config.json /app/
 COPY tsconfig.json /app/
 COPY typings.json /app/
 COPY webpack.config.js /app/
+COPY server.js /app/
 COPY src/ /app/src/
 COPY custom_typings/ /app/custom_typings/
 COPY index.html /app/
