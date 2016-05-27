@@ -30,9 +30,9 @@ class SmsPanel extends React.Component<SmsPanelProps, any> {
         </div >
     }
 
-		getMessageLog() {
-			return this.props.messageLog.join("\n");
-		}
+    getMessageLog() {
+        return this.props.messageLog.join("\n");
+    }
 
     handleButtonClick() {
         let message = $("#sms-message").val();
