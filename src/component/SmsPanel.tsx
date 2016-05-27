@@ -19,7 +19,7 @@ class SmsPanel extends React.Component<SmsPanelProps, any> {
                     <span className="input-group-addon">+44</span>
                     <input type="text" className="form-control" placeholder="Phone number..." id="sms-number" />
                 </div>
-                <textarea className="form-control" rows="5" id="sms-conversation" placeholder="No messages to show"></textarea>
+                <textarea className="form-control" rows="5" id="sms-conversation" placeholder="No messages to show" value={ this.getMessageLog() }></textarea>
                 <div className="input-group">
                     <input type="text" className="form-control" placeholder="Message..." id="sms-message" />
                     <span className="input-group-btn">
@@ -29,6 +29,10 @@ class SmsPanel extends React.Component<SmsPanelProps, any> {
             </div>
         </div >
     }
+
+		getMessageLog() {
+			return this.props.messageLog.join("\n");
+		}
 
     handleButtonClick() {
         let message = $("#sms-message").val();

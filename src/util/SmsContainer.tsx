@@ -5,10 +5,9 @@ import { ActionFactory } from './../action/Actions';
 
 declare var store;
 
-function sendSms(message: string, phoneNumber: string) {
+function sendSms(message: string, phoneNumber: string, dispatch: any) {
 
-    // TODO: This should not be needed, change config to have full url...
-    let fullUrl = "http://" + this.props.apiURL + ":4567/sms/send";
+    let fullUrl = "http://" + location.hostname + ":8001/sms/send";
 
     let payload = {
         "to": phoneNumber,
@@ -18,7 +17,7 @@ function sendSms(message: string, phoneNumber: string) {
     let posting = $.post(fullUrl, JSON.stringify(payload));
 
     posting.done(function(response) {
-        store.dispatch(ActionFactory.sendSmsSuccess(message));
+        dispatch(ActionFactory.sendSmsSuccess(message));
     });
 }
 
@@ -33,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onButtonClick: (message: string, phoneNumber: string) => {
             dispatch(ActionFactory.sendSmsRequest(message, phoneNumber));
-            sendSms(message, phoneNumber);
+            sendSms(message, phoneNumber, dispatch);
         }
     };
 }
