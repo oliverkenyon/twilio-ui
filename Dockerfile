@@ -15,6 +15,7 @@ COPY custom_typings/ /app/custom_typings/
 COPY index.html /app/
 
 WORKDIR /app
+RUN npm install -g forever
 RUN npm set progress=false; npm install --unsafe-perm && npm cache clean && rm -rf node_modules/
 RUN rm -rf src/
 
