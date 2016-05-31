@@ -1,0 +1,43 @@
+twilio-ui:
+  image: 'registry.ng.bluemix.net/okenyon/twilio-ui'
+  ports:
+    - '8080:8080'
+    - '8001:8001'
+    - '8002:8002'
+  environment:
+  - API_URL=http://twilio-api:4567
+  - WEBSOCKET_URL=ws://twilio-wss:8002/
+  links: 
+    - twilio-api
+    - twilio-wss
+twilio-api:
+  image: 'registry.ng.bluemix.net/okenyon/twilio-test'
+  ports:
+    - '4567:4567'
+  environment:
+    - RABBIT_HOST=${RABBIT_HOST}
+    - RABBIT_USER=${RABBIT_USER}
+    - RABBIT_PASS=${RABBIT_PASS}
+    - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+    - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+    - TWILIO_APP_SID=${TWILIO_APP_SID}
+  links:
+    - rabbit
+twilio-wss:
+  image: 'registry.ng.bluemix.net/okenyon/twilio-wss'
+  ports:
+    - '4567:4567'
+  environment:
+   - RABBIT_HOST=${RABBIT_HOST}
+   - RABBIT_USER=${RABBIT_USER}
+   - RABBIT_PASS=${RABBIT_PASS}
+  links:
+    - rabbit
+rabbit:
+  image: 'registry.ng.bluemix.net/okenyon/rabbit'
+  ports:
+    - '8080:15672'
+    - '5672:5672'
+  environment:
+    - RABBITMQ_DEFAULT_USER=${RABBIT_USER}
+    - RABBITMQ_DEFAULT_PASS=${RABBIT_PASS}
